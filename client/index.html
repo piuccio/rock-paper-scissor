@@ -8,9 +8,33 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="stylesheet" href="css/main.css">
+        <link href='https://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
     </head>
-    <body>
-        <p>Hello</p>
+    <body class="not-in-game">
+        <nav class="navigation">
+            <a href="/" class="navigationLink">Rock paper scissor</a>
+        </nav>
+
+        <main class="gameContainer">
+            <div class="selectGameContainer" href="#human-computer">
+                <div class="selectGame">
+                    <p class="selectGame_description">Test your skills against a computer.</p>
+                    <p class="selectGame_action">
+                        <button class="actionButton">Human vs Computer</button>
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="selectGameContainer" href="#computer-computer">
+                <div class="selectGame">
+                    <p class="selectGame_description">Watch computers play against each other.</p>
+                    <p class="selectGame_action">
+                        <button class="actionButton">Computer vs Computer</button>
+                    </p>
+                </div>
+            </div>
+        </main>
 
         <script src="js/index.js"></script>
     </body>

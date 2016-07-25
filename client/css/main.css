@@ -7,3 +7,87 @@ html {
 body {
   margin: 0;
 }
+
+body {
+    background-color: #EAF8FF;
+    /* base font */
+    font-size: 20px;
+    font-family: 'Indie Flower', cursive;
+}
+
+.navigation {
+    /* box */
+    line-height: 3;
+    padding: 0 1em;
+    /* style the text */
+    text-transform: uppercase;
+}
+.navigationLink,
+.navigationLink:visited,
+.navigationLink:active {
+    text-decoration: none;
+    color: black;
+}
+
+/* position game select */
+.gameContainer {
+    display: flex;
+    flex-flow: row wrap;
+}
+.selectGameContainer {
+    /* mobile first, one box per row */
+    flex: 1 0 100%;
+    margin-bottom: 2em;
+}
+@media(min-width: 600px) {
+    /* on large screens, two boxes per row */
+    .selectGameContainer {
+        flex: 0 0 50%;
+    }
+}
+
+/* style the boxes */
+.selectGame {
+    margin: 0 1em;
+    background-color: #F9F9FF;
+    border-radius: 2px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    height: 100%;
+}
+@media(min-width: 600px) {
+    /* on large screens, two boxes per row */
+    .selectGame {
+        margin: 0 2em;
+    }
+}
+.selectGame_description {
+    padding: 1em;
+}
+
+/* flex inside the box */
+.selectGame {
+    display: flex;
+    flex-flow: column nowrap;
+}
+.selectGame_description {
+    flex: 1;
+}
+
+/* call to action */
+.selectGame_action {
+    text-align: center;
+    margin: 0;
+}
+.actionButton {
+    width: 100%;
+    font-family: 'Indie Flower', cursive;
+    font-size: 200%;
+    line-height: 2;
+    color: white;
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    background: #f39c12;
+    border: 0;
+    border-bottom: 2px solid #e8930c;
+    box-shadow: inset 0 -2px #e8930c;
+}

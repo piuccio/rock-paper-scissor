@@ -29,8 +29,22 @@ body {
     color: black;
 }
 
+/* control visibility through CSS, a better solution would use a client side template engine maybe */
+.not-in-game .gameContainer {
+    display: none;
+}
+.in-game .gameContainer {
+    display: flex;
+}
+.not-in-game .menuContainer {
+    display: flex;
+}
+.in-game .menuContainer {
+    display: none;
+}
+
 /* position game select */
-.gameContainer {
+.menuContainer {
     display: flex;
     flex-flow: row wrap;
 }

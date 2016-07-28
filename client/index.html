@@ -15,25 +15,30 @@
             <a href="/" class="navigationLink">Rock paper scissor</a>
         </nav>
 
-        <main class="gameContainer">
-            <div class="selectGameContainer" href="#human-computer">
+        <nav class="menuContainer">
+            <div class="selectGameContainer">
                 <div class="selectGame">
                     <p class="selectGame_description">Test your skills against a computer.</p>
                     <p class="selectGame_action">
-                        <button class="actionButton">Human vs Computer</button>
+                        <button class="actionButton js-game" data-game="human-computer">Human vs Computer</button>
                     </p>
                 </div>
             </div>
 
 
-            <div class="selectGameContainer" href="#computer-computer">
+            <div class="selectGameContainer">
                 <div class="selectGame">
                     <p class="selectGame_description">Watch computers play against each other.</p>
                     <p class="selectGame_action">
-                        <button class="actionButton">Computer vs Computer</button>
+                        <button class="actionButton js-game" data-game="computer-computer">Computer vs Computer</button>
                     </p>
                 </div>
             </div>
+
+        </nav>
+
+        <main class="gameContainer">
+            Play!
         </main>
 
         <script src="js/index.js"></script>

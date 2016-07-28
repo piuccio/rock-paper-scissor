@@ -1,3 +1,7 @@
-export function create (game, container) {
-    console.log(game);
+export function createGame () {
+    return {
+        addPlayer (player) {
+            console.log(player, ' joined the game');
+        }
+    };
 }

@@ -16,6 +16,7 @@
     "start": "npm run server"
   },
   "devDependencies": {
+    "babel-preset-es2015-rollup": "^1.1.1",
     "es5-shim": "^4.5.9",
     "eslint": "^3.1.1",
     "express": "^4.14.0",

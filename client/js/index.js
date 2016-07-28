@@ -1,24 +1,24 @@
-import { create } from './game.js';
+import { create, defaultPlayersFromString } from './page-game.js';
 
 attachEventListeners();
 
 function attachEventListeners () {
     document.body.addEventListener('click', function(event) {
+        // The regexp because <IE10 don't support event.target.classList.contains('js-game')
         if (event.target.className.match(/\bjs-game\b/i)) {
             event.preventDefault();
-            // The regexp because <IE10 don't support event.target.classList.contains('js-game')
-            const game = event.target.getAttribute('data-game');
-            initilizeGame(game);
+            const players = event.target.getAttribute('data-players');
+            initilizeGame(players);
         }
     });
 }
 
-function initilizeGame (game) {
+function initilizeGame (players) {
     // Another silly way of supporting <IE10
     const className = document.body.className;
     if (/\bnot-in-game\b/.test(className)) {
         document.body.className = className.replace('not-in-game', 'in-game');
     }
 
-    create(game, document.querySelector('.gameContainer'));
+    create(defaultPlayersFromString(players), document.querySelector('.gameContainer'));
 }

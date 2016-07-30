@@ -1,4 +1,5 @@
 import { create, defaultPlayersFromString } from './page-game.js';
+import { standardRules } from './rules';
 
 attachEventListeners();
 
@@ -20,5 +21,9 @@ function initilizeGame (players) {
         document.body.className = className.replace('not-in-game', 'in-game');
     }
 
-    create(defaultPlayersFromString(players), document.querySelector('.gameContainer'));
+    create(
+        defaultPlayersFromString(players),
+        document.querySelector('.gameContainer'),
+        standardRules
+    );
 }

@@ -1,6 +1,17 @@
 export function createPlayer ({
     name, isHuman
 }) {
-    console.log('creating player', name, isHuman);
-    return {};
+    return {
+        name,
+        isHuman,
+        choose: isHuman ? humanChoose : computerChoose
+    };
+}
+
+function humanChoose () {
+
+}
+
+function computerChoose () {
+
 }

@@ -20,7 +20,7 @@ describe('Page', function() {
         ];
         const clickTarget = document.querySelector('.click-target');
 
-        const page = create(players, document.querySelector('.test-div--page'), listeners);
+        const page = create(players, document.querySelector('.test-div--page'), {}, listeners);
         click(clickTarget);
         expect(spy).toHaveBeenCalledTimes(1);
         expect(spy).toHaveBeenCalledWith(

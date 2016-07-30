@@ -15,8 +15,8 @@ export function defaultPlayersFromString (text) {
     });
 }
 
-export function create (players, container, listeners = defaultListeners()) {
-    const game = createGame();
+export function create (players, container, rules, listeners = defaultListeners()) {
+    const game = createGame(rules);
     const page = {
         container,
         game,
@@ -26,6 +26,7 @@ export function create (players, container, listeners = defaultListeners()) {
     players.map(createPlayer).forEach(player => {
         game.addPlayer(player);
     });
+    initLeaderboardUpdate(page);
 
     return page;
 }
@@ -53,6 +54,33 @@ function defaultListeners () {
     return [
         [ 'click', delegateClickHandler ]
     ];
+}
+
+function initLeaderboardUpdate (page) {
+    const DOMlist = page.container.querySelector('.leaderboard .playersList');
+    if (!DOMlist) {
+        return;
+    }
+    const template = DOMlist.querySelector('.playersList_player');
+    if (!template) {
+        return;
+    }
+
+    DOMlist.innerHTML = '';
+    page.game.scores().forEach(data => {
+        const node = template.cloneNode(true);
+        node.setAttribute('data-player', data.player.name);
+        node.querySelector('.playersList_player_name').innerText = data.player.name;
+        node.querySelector('.playersList_player_score').innerText = data.score;
+        DOMlist.appendChild(node);
+    });
+
+    page.game.events.on('matchEnd', () => {
+        page.game.scores().forEach(data => {
+            const node = DOMlist.querySelector('[data-player="' + data.player.name + '"]');
+            node.querySelector('.playersList_player_score').innerText = data.score;
+        });
+    });
 }
 
 function delegateClickHandler (event, game) {

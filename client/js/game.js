@@ -38,8 +38,8 @@ export function createGame (overrideCreateMatch) {
         },
 
         // once a match starts, the players are fixed
-        startMatch () {
-            const match = (overrideCreateMatch || createMatch)(players);
+        startMatch (rules) {
+            const match = (overrideCreateMatch || createMatch)(players, rules);
             match.events.once('end', onMatchEnd);
             return match;
         },

@@ -1,7 +1,7 @@
 import { createMatch } from './match';
 import EventEmitter from './event-emitter';
 
-export function createGame (overrideCreateMatch) {
+export function createGame (rules, overrideCreateMatch) {
     const players = [];
     // In ES6 world I'd use a new Map to link players to scores
     const leaderboard = [];
@@ -38,7 +38,7 @@ export function createGame (overrideCreateMatch) {
         },
 
         // once a match starts, the players are fixed
-        startMatch (rules) {
+        startMatch () {
             const match = (overrideCreateMatch || createMatch)(players, rules);
             match.events.once('end', onMatchEnd);
             return match;

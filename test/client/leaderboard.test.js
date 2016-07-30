@@ -6,7 +6,7 @@ describe('Leaderboard', function() {
     const player2 = { name: 'p2' };
 
     it('tracks the score of winning match', function() {
-        const game = createGame(matchMockCreator);
+        const game = createGame({}, matchMockCreator);
         game.addPlayer(player1);
         game.addPlayer(player2);
 
@@ -24,7 +24,7 @@ describe('Leaderboard', function() {
     });
 
     it('the same match can only be played once', function() {
-        const game = createGame(matchMockCreator);
+        const game = createGame({}, matchMockCreator);
         game.addPlayer(player1);
         game.addPlayer(player2);
 
@@ -44,7 +44,7 @@ describe('Leaderboard', function() {
     });
 
     it('track the score of multiple matches', function() {
-        const game = createGame(matchMockCreator);
+        const game = createGame({}, matchMockCreator);
         game.addPlayer(player1);
         game.addPlayer(player2);
 
@@ -75,7 +75,7 @@ describe('Leaderboard', function() {
     });
 
     it('track the score of matches ending in a tie', function() {
-        const game = createGame(matchMockCreator);
+        const game = createGame({}, matchMockCreator);
         game.addPlayer(player1);
         game.addPlayer(player2);
 

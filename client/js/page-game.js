@@ -23,10 +23,15 @@ export function create (players, container, rules, listeners = defaultListeners(
         listeners: attachEventListeners(game, container, listeners)
     };
 
-    players.map(createPlayer).forEach(player => {
+    players
+    .map(info => createPlayer(info.name, info.isHuman, game))
+    .forEach(player => {
         game.addPlayer(player);
     });
     initLeaderboardUpdate(page);
+    initHumanControls(page, rules);
+
+    game.startMatch();
 
     return page;
 }
@@ -83,6 +88,32 @@ function initLeaderboardUpdate (page) {
     });
 }
 
+function initHumanControls (page, rules) {
+    const DOMlist = page.container.querySelector('.humanControls .controlsList');
+    if (!DOMlist) {
+        return;
+    }
+    const template = DOMlist.querySelector('.controlsList_control');
+    if (!template) {
+        return;
+    }
+
+    DOMlist.innerHTML = '';
+    rules.options().forEach(choice => {
+        const node = template.cloneNode(true);
+        const link = node.querySelector('.controlsList_control_name');
+        link.setAttribute('data-choice', choice);
+        link.innerText = choice;
+        DOMlist.appendChild(node);
+    });
+}
+
 function delegateClickHandler (event, game) {
-    console.log(event, game);
+    if (/js-choose/.test(event.target.className)) {
+        event.preventDefault();
+        const choice = event.target.getAttribute('data-choice');
+        if (choice) {
+            game.events.emit('human-choice', choice);
+        }
+    }
 }

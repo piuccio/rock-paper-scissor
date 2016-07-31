@@ -1,12 +1,10 @@
 export function initHumanControls (page, rules) {
-    const DOMlist = page.container.querySelector('.humanControls .controlsList');
-    if (!DOMlist) {
+    const controls = page.container.querySelector('.humanControls');
+    if (!controls) {
         return;
     }
+    const DOMlist = controls.querySelector('.humanControls .controlsList');
     const template = DOMlist.querySelector('.controlsList_control');
-    if (!template) {
-        return;
-    }
 
     DOMlist.innerHTML = '';
     rules.options().forEach(choice => {
@@ -15,5 +13,13 @@ export function initHumanControls (page, rules) {
         link.setAttribute('data-choice', choice);
         link.innerText = choice;
         DOMlist.appendChild(node);
+    });
+
+    page.events.on('startMatch', match => {
+        if (match.hasHumanPlayers) {
+            controls.style.display = 'block';
+        } else {
+            controls.style.display = 'none';
+        }
     });
 }

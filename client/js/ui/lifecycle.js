@@ -18,6 +18,7 @@ function startNextMatch (page, container, result) {
     } else {
         page.activeMatch = page.game.startMatch();
     }
+    page.events.emit('startMatch', page.activeMatch);
 
     page.activeMatch.events.once('end', (result) => {
         page.activeMatch = null;

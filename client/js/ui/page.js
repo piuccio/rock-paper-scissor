@@ -35,9 +35,9 @@ export function create (players, container, rules, listeners = defaultListeners(
     .forEach(player => {
         game.addPlayer(player);
     });
-    initGameLifeCycle(page);
     initLeaderboardUpdate(page);
     initHumanControls(page, rules);
+    initGameLifeCycle(page);
 
     return page;
 }

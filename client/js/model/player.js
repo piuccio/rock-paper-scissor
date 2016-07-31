@@ -1,17 +1,13 @@
-export function createPlayer (name, isHuman, game) {
+export function createPlayer (name, isHuman, game, computerLevel) {
     function humanChoose () {
         return new Promise(resolve => {
             game.events.once('human-choice', resolve);
         });
     }
 
-    function computerChoose (options) {
-        return Promise.resolve('paper');
-    }
-
     return {
         name,
         isHuman,
-        choose: isHuman ? humanChoose : computerChoose
+        choose: isHuman ? humanChoose : computerLevel
     };
 }

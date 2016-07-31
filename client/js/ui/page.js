@@ -4,6 +4,7 @@ import { initGameLifeCycle } from './lifecycle';
 import { initLeaderboardUpdate } from './leaderboard';
 import { initHumanControls } from './human-controls';
 import EventEmitter from '../lib/event-emitter';
+import { hard } from '../model/computer-levels';
 
 /**
  * The page game wires the DOM to an ongoing game.
@@ -31,7 +32,7 @@ export function create (players, container, rules, listeners = defaultListeners(
     };
 
     players
-    .map(info => createPlayer(info.name, info.isHuman, game))
+    .map(info => createPlayer(info.name, info.isHuman, game, hard))
     .forEach(player => {
         game.addPlayer(player);
     });

@@ -1,5 +1,5 @@
-import { createMatch } from '../../client/js/match';
-import { standardRules } from '../../client/js/rules';
+import { createMatch } from '../../client/js/model/match';
+import { standardRules } from '../../client/js/model/rules';
 
 describe('Match', function() {
     function createPlayer (option) {

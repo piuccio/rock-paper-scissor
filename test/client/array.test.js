@@ -1,4 +1,4 @@
-import { intersect } from '../../client/js/array';
+import { intersect } from '../../client/js/lib/array';
 
 describe('Array', function() {
     it('intersect', function() {

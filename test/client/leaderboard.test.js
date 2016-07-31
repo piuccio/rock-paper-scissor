@@ -1,4 +1,4 @@
-import { createGame } from '../../client/js/game';
+import { createGame } from '../../client/js/model/game';
 import matchMockCreator from './lib/mock-match';
 
 describe('Leaderboard', function() {

@@ -1,4 +1,4 @@
-import { create, defaultPlayersFromString } from './page-game.js';
+import { create, defaultPlayersFromString } from './ui/page.js';
 import { standardRules } from './rules';
 
 attachEventListeners();

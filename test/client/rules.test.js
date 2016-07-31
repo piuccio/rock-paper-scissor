@@ -1,4 +1,4 @@
-import { standardRules } from '../../client/js/rules';
+import { standardRules } from '../../client/js/model/rules';
 
 describe('Rules', function() {
     describe('picks a winner among two choices', function() {

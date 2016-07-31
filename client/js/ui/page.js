@@ -1,5 +1,5 @@
-import { createGame } from './game';
-import { createPlayer } from './player';
+import { createGame } from '../model/game';
+import { createPlayer } from '../model/player';
 
 /**
  * The page game wires the DOM to an ongoing game.

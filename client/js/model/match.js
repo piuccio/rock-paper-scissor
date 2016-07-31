@@ -1,4 +1,4 @@
-import EventEmitter from './event-emitter';
+import EventEmitter from '../lib/event-emitter';
 
 export function createMatch (players, rules) {
     const emitter = Object.create(EventEmitter);

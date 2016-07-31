@@ -1,4 +1,4 @@
-import EventEmitter from '../../client/js/event-emitter';
+import EventEmitter from '../../client/js/lib/event-emitter';
 
 describe('Event Emitter', function() {
     it('registers to events', function() {

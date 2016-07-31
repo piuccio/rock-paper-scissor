@@ -1,4 +1,5 @@
-import { create, dispose } from '../../client/js/page-game';
+import { create, dispose } from '../../client/js/ui/page';
+import { standardRules } from '../../client/js/model/rules';
 import { click } from './lib/dom';
 
 describe('Page', function() {
@@ -20,7 +21,7 @@ describe('Page', function() {
         ];
         const clickTarget = document.querySelector('.click-target');
 
-        const page = create(players, document.querySelector('.test-div--page'), {}, listeners);
+        const page = create(players, document.querySelector('.test-div--page'), standardRules, listeners);
         click(clickTarget);
         expect(spy).toHaveBeenCalledTimes(1);
         expect(spy).toHaveBeenCalledWith(

@@ -1,5 +1,5 @@
 import { createMatch } from './match';
-import EventEmitter from './event-emitter';
+import EventEmitter from '../lib/event-emitter';
 
 export function createGame (rules, overrideCreateMatch) {
     const players = [];

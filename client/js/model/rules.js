@@ -1,4 +1,4 @@
-import { intersect } from './array';
+import { intersect } from '../lib/array';
 
 const standard = {
     'rock': {

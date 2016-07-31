@@ -10,7 +10,8 @@ export function createMatch (players, rules) {
     .then(matchResult => emitter.emit('end', matchResult));
 
     return {
-        events: emitter
+        events: emitter,
+        hasHumanPlayers: players.filter(player => player.isHuman).length > 0
     };
 }
 
@@ -18,16 +19,30 @@ function chooseSign (player, rules) {
     return player.choose(rules.options());
 }
 
-function pickWinner (rules, players, results) {
-    const {winner, tieBreakers} = rules.winner(...results);
+function pickWinner (rules, players, choices) {
+    const {winner, tieBreakers, results} = rules.winner(...choices);
     if (winner === -1) {
         return {
             winner: null,
-            tie: tieBreakers.map(position => players[position])
+            tie: tieBreakers.map(position => players[position]),
+            summary: results.map(result => {
+                return {
+                    player: players[result.position],
+                    loose: result.loose,
+                    choice: choices[result.position]
+                };
+            })
         };
     } else {
         return {
-            winner: players[winner]
+            winner: players[winner],
+            summary: results.map(result => {
+                return {
+                    player: players[result.position],
+                    loose: result.loose,
+                    choice: choices[result.position]
+                };
+            })
         };
     }
 }

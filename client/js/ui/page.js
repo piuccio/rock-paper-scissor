@@ -1,5 +1,9 @@
 import { createGame } from '../model/game';
 import { createPlayer } from '../model/player';
+import { initGameLifeCycle } from './lifecycle';
+import { initLeaderboardUpdate } from './leaderboard';
+import { initHumanControls } from './human-controls';
+import EventEmitter from '../lib/event-emitter';
 
 /**
  * The page game wires the DOM to an ongoing game.
@@ -17,9 +21,12 @@ export function defaultPlayersFromString (text) {
 
 export function create (players, container, rules, listeners = defaultListeners()) {
     const game = createGame(rules);
+    const emitter = Object.create(EventEmitter);
     const page = {
+        activeMatch: null,
         container,
         game,
+        events: emitter,
         listeners: attachEventListeners(game, container, listeners)
     };
 
@@ -28,10 +35,9 @@ export function create (players, container, rules, listeners = defaultListeners(
     .forEach(player => {
         game.addPlayer(player);
     });
+    initGameLifeCycle(page);
     initLeaderboardUpdate(page);
     initHumanControls(page, rules);
-
-    game.startMatch();
 
     return page;
 }
@@ -59,53 +65,6 @@ function defaultListeners () {
     return [
         [ 'click', delegateClickHandler ]
     ];
-}
-
-function initLeaderboardUpdate (page) {
-    const DOMlist = page.container.querySelector('.leaderboard .playersList');
-    if (!DOMlist) {
-        return;
-    }
-    const template = DOMlist.querySelector('.playersList_player');
-    if (!template) {
-        return;
-    }
-
-    DOMlist.innerHTML = '';
-    page.game.scores().forEach(data => {
-        const node = template.cloneNode(true);
-        node.setAttribute('data-player', data.player.name);
-        node.querySelector('.playersList_player_name').innerText = data.player.name;
-        node.querySelector('.playersList_player_score').innerText = data.score;
-        DOMlist.appendChild(node);
-    });
-
-    page.game.events.on('matchEnd', () => {
-        page.game.scores().forEach(data => {
-            const node = DOMlist.querySelector('[data-player="' + data.player.name + '"]');
-            node.querySelector('.playersList_player_score').innerText = data.score;
-        });
-    });
-}
-
-function initHumanControls (page, rules) {
-    const DOMlist = page.container.querySelector('.humanControls .controlsList');
-    if (!DOMlist) {
-        return;
-    }
-    const template = DOMlist.querySelector('.controlsList_control');
-    if (!template) {
-        return;
-    }
-
-    DOMlist.innerHTML = '';
-    rules.options().forEach(choice => {
-        const node = template.cloneNode(true);
-        const link = node.querySelector('.controlsList_control_name');
-        link.setAttribute('data-choice', choice);
-        link.innerText = choice;
-        DOMlist.appendChild(node);
-    });
 }
 
 function delegateClickHandler (event, game) {

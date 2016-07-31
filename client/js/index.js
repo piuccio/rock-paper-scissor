@@ -1,5 +1,5 @@
 import { create, defaultPlayersFromString } from './ui/page.js';
-import { standardRules } from './rules';
+import { standardRules } from './model/rules';
 
 attachEventListeners();
 
